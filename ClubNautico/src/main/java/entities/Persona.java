@@ -1,11 +1,8 @@
 package entities;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
-
+import Data.DTDireccion;
 import java.io.Serializable;
 
 @Getter
@@ -14,15 +11,20 @@ import java.io.Serializable;
 @AllArgsConstructor
 @EqualsAndHashCode
 
-@Table(name = "PERSONA")
-public class Persona implements Serializable {
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public abstract class Persona implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private String nombre;
-    private String Direccion;
-    private String Telefono;
+    @Column(name = "nombre", nullable = false)
+    protected String nombre;
+
+    @Embedded
+    protected DTDireccion direccion;
 
 
+    @Column(name = "telefono", nullable = false)
+    protected String telefono;
 }

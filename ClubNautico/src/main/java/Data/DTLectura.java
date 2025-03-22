@@ -1,9 +1,10 @@
 package Data;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.Embeddable;
 import lombok.Data;
 
+@Embeddable
+@Data
 
 public class DTLectura {
     private Float Largo;

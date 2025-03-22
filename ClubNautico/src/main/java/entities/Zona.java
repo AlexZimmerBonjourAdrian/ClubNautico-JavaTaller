@@ -1,8 +1,7 @@
 package entities;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import java.util.List;
 import lombok.*;
 
 import java.io.Serializable;
@@ -13,12 +12,22 @@ import java.io.Serializable;
 @AllArgsConstructor
 @EqualsAndHashCode
 
+@Entity
 @Table(name = "ZONA")
 public class Zona implements Serializable {
 
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private String Letra;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "tipodebarcos", nullable = false)
     private String Tipodebarcos;
-    private Integer Numerodebarcos;
+
+    @Column(name = "capacidad_maxima", nullable = false)
+    private Integer capacidadMaxima;
+
+    @Column(name = "saldo", nullable = false)
     private Double Saldo;
+
+
 }
